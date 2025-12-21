@@ -42,8 +42,8 @@ Deno.test("applyTurn", async (t) => {
 
     { name: "positive turn within bounds", startX: 30, turn: 20, expected: [50, 0] },
     { name: "negative turn within bounds", startX: 30, turn: -20, expected: [10, 0] },
-    { name: "landing exactly on zero", startX: 50, turn: -50, expected: [0, 1] },
-    { name: "landing exactly on zero", startX: 50, turn: +50, expected: [0, 1] },
+    { name: "landing exactly on zero with negative turn", startX: 50, turn: -50, expected: [0, 1] },
+    { name: "landing exactly on zero with positive turn", startX: 50, turn: +50, expected: [0, 1] },
     { name: "landing on zero with large neg turn", startX: 50, turn: -250, expected: [0, 3] },
     { name: "landing on zero with large pos turn", startX: 50, turn: +250, expected: [0, 3] },
     { name: "crossing zero from positive to negative", startX: 30, turn: -80, expected: [50, 1] },
