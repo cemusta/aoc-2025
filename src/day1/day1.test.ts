@@ -62,23 +62,23 @@ Deno.test("applyTurn", async (t) => {
     { name: "big turn case 1", startX: 50, turn: 1000, expected: [50, 10] },
     { name: "big turn case 2", startX: 50, turn: -1000, expected: [50, 10] },
 
-    { name: "from 99 backward wrap", startX: 99, turn: -50, expected: [49, 0] },
-    { name: "from 1 to 0 positive", startX: 1, turn: 99, expected: [0, 1] },
-    { name: "barely not wrapping positive", startX: 50, turn: 49, expected: [99, 0] },
-    { name: "barely not wrapping negative", startX: 50, turn: -50, expected: [0, 1] },
-    { name: "from 0 to 99 via positive wrap", startX: 0, turn: 99, expected: [99, 0] },
-    { name: "from 99 to 98", startX: 99, turn: -1, expected: [98, 0] },
-    { name: "exact 300 from middle", startX: 50, turn: 300, expected: [50, 3] },
-    { name: "exact -300 from middle", startX: 50, turn: -300, expected: [50, 3] },
-    { name: "99 plus 101", startX: 99, turn: 101, expected: [0, 2] },
-    { name: "0 minus 101", startX: 0, turn: -101, expected: [99, 1] },
-    { name: "mid position exact double wrap", startX: 25, turn: 200, expected: [25, 2] },
-    { name: "mid position exact double wrap neg", startX: 25, turn: -200, expected: [25, 2] },
+    { name: "from 99 backward wrap", startPos: 99, turn: -50, expected: [49, 0] },
+    { name: "from 1 to 0 positive", startPos: 1, turn: 99, expected: [0, 1] },
+    { name: "barely not wrapping positive", startPos: 50, turn: 49, expected: [99, 0] },
+    { name: "barely not wrapping negative", startPos: 50, turn: -50, expected: [0, 1] },
+    { name: "from 0 to 99 via positive wrap", startPos: 0, turn: 99, expected: [99, 0] },
+    { name: "from 99 to 98", startPos: 99, turn: -1, expected: [98, 0] },
+    { name: "exact 300 from middle", startPos: 50, turn: 300, expected: [50, 3] },
+    { name: "exact -300 from middle", startPos: 50, turn: -300, expected: [50, 3] },
+    { name: "99 plus 101", startPos: 99, turn: 101, expected: [0, 2] },
+    { name: "0 minus 101", startPos: 0, turn: -101, expected: [99, 1] },
+    { name: "mid position exact double wrap", startPos: 25, turn: 200, expected: [25, 2] },
+    { name: "mid position exact double wrap neg", startPos: 25, turn: -200, expected: [25, 2] },
   ];
 
-  for (const { name, startX, turn, expected } of testCases) {
+  for (const { name, startPos, turn, expected } of testCases) {
     await t.step(name, () => {
-      const result = applyTurn(startX, turn);
+      const result = applyTurn(startPos, turn);
       expect(result).toEqual(expected);
     });
   }
