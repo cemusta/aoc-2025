@@ -19,11 +19,13 @@ export function day2(input: string, part = 1): number {
 
   let sum = 0;
 
+  const invalidFunction = part === 1 ? isInvalidPart1 : isInvalidPart2;
+
   for (const range of ranges) {
-    log.info(`Processing range: ${range.start} - ${range.end}`);
+    log.debug(`Processing range: ${range.start} - ${range.end}`);
     for (let i = range.start; i <= range.end; i++) {
-      if (findInvalidId(i)) {
-        log.info(`Found invalid ID: ${i}`);
+      if (invalidFunction(i)) {
+        log.debug(`Found invalid ID: ${i}`);
         sum += i;
       }
     }
@@ -33,9 +35,9 @@ export function day2(input: string, part = 1): number {
   return sum;
 }
 
-export function findInvalidId(x: number): boolean {
+export function isInvalidPart1(id: number): boolean {
   // split number into two halves, if uneven length, return false
-  const str = x.toString();
+  const str = id.toString();
   if (str.length % 2 !== 0) {
     return false;
   }
@@ -47,6 +49,29 @@ export function findInvalidId(x: number): boolean {
   return firstHalf === secondHalf;
 }
 
+export function isInvalidPart2(id: number): boolean {
+  const str = id.toString();
+  const len = str.length;
+
+  // Try different pattern lengths from 1 to half the string length
+  for (let patternLength = 1; patternLength <= len / 2; patternLength++) {
+    // Only check if the pattern divides evenly into the string
+    if (len % patternLength === 0) {
+      const pattern = str.slice(0, patternLength);
+      const repetitions = len / patternLength;
+
+      // Check if repeating the pattern creates the original string
+      // and it repeats at least twice
+      if (repetitions >= 2 && pattern.repeat(repetitions) === str) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 if (import.meta.main) {
-  day2("./src/day2/input.txt");
+  day2("./src/day2/input.txt", 1);
+  day2("./src/day2/input.txt", 2);
 }

@@ -27,7 +27,7 @@ Deno.test("Day1 - invalid part should throw error", () => {
   }).toThrow("Invalid part");
 });
 
-Deno.test("applyTurn", async (t) => {
+Deno.test("Day1 - applyTurn", async (t) => {
   const testCases = [
     { name: "99 to 0", startPos: 99, turn: 1, expected: [0, 1] },
     { name: "0 to 99", startPos: 0, turn: -1, expected: [99, 0] },
