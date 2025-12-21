@@ -18,29 +18,31 @@ function parseInput(input: string): number[] {
 }
 
 export function applyTurn(startPos: number, turn: number): [number, number] {
-  let newPosition = startPos + turn;
+  const rawNewPosition = startPos + turn;
   let passes = 0;
 
-  // Calculate how many times we pass through 0
-  if (startPos === 0 && turn !== 0) {
-    // Starting at 0, count passes every 100 units
-    passes = Math.floor(Math.abs(turn) / 100);
-  } else if (newPosition === 0) {
-    // Ending at 0, count based on journey
-    passes = Math.ceil(Math.abs(turn) / 100);
-  } else if (newPosition < 0) {
-    // Crossing zero - count how many times based on total distance
-    passes = Math.ceil(Math.abs(turn) / 100);
-  } else if (Math.abs(newPosition) >= 100) {
-    // Wrapping around without crossing zero
-    passes = Math.floor(Math.abs(newPosition) / 100);
+  if (turn > 0) {
+    // Count how many times we pass through position 0
+    passes = Math.floor(rawNewPosition / 100);
+  } else if (turn < 0) {
+    // Moving left (negative direction)
+    if (startPos === 0) {
+      // Starting at 0, count complete laps backward
+      passes = Math.floor(Math.abs(turn) / 100);
+    } else if (rawNewPosition < 0) {
+      // We've crossed 0 going backwards
+      const distancePastZero = Math.abs(rawNewPosition);
+      passes = 1 + Math.floor(distancePastZero / 100);
+    } else if (rawNewPosition === 0) {
+      // Landing exactly on 0 from a positive position counts as 1 pass
+      passes = 1;
+    }
   }
 
-  // Handle negative modulo properly
-  newPosition = ((newPosition % 100) + 100) % 100;
-  if (newPosition === 0 && startPos !== 0) newPosition = startPos > 0 ? 0 : 0;
+  // Wrap position to 0-99 range
+  const newPosition = ((rawNewPosition % 100) + 100) % 100;
 
-  return [newPosition, Math.abs(passes)];
+  return [newPosition, passes];
 }
 
 export function day1(input: string, part = 1): number {
