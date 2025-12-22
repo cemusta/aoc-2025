@@ -6,7 +6,7 @@ import { day2, isInvalidPart1, isInvalidPart2 } from "./day2.ts";
 log.setup({
   loggers: {
     default: {
-      level: undefined,
+      level: "ERROR",
     },
   },
 });

@@ -5,7 +5,7 @@ import * as log from "@std/log";
 log.setup({
   loggers: {
     default: {
-      level: undefined,
+      level: "ERROR",
     },
   },
 });
