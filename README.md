@@ -11,9 +11,9 @@ For information about Advent of Code check here: <https://adventofcode.com/2025/
 
 ## Progress
 
-4 out of 24 stars.
+6 out of 24 stars.
 
-![progress bar 16 percent](https://progress-bar.xyz/16/?progress_color=33ff33)
+![progress bar 25 percent](https://progress-bar.xyz/25/?progress_color=33ff33)
 
 ## Running locally
 

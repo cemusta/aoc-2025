@@ -36,13 +36,6 @@ Deno.test("Day2 - isInvalidPart1", async (t) => {
     { input: 9999, expected: true, description: "9999 is invalid, 99 repeating when divided to half" },
   ];
 
-  isInvalidPart1Tests.forEach(({ input, expected, description }) => {
-    Deno.test(`isInvalidPart1 should return ${expected} for ${input} (${description})`, () => {
-      const result = isInvalidPart1(input);
-      expect(result).toBe(expected);
-    });
-  });
-
   for (const { input, expected, description } of isInvalidPart1Tests) {
     await t.step(description, () => {
       const result = isInvalidPart1(input);
