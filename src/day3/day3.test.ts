@@ -6,7 +6,7 @@ import { day3, findMaximumJoltage } from "./day3.ts";
 log.setup({
   loggers: {
     default: {
-      level: undefined,
+      level: "ERROR",
     },
   },
 });
