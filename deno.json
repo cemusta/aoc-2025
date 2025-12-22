@@ -1,6 +1,7 @@
 {
   "tasks": {
     "day1": "deno run -R ./src/day1/day1.ts",
+    "day2": "deno run -R ./src/day2/day2.ts",
     "coverage": "deno test --coverage=coverage -R  --junit-path=./coverage/junit.xml && deno coverage ./coverage --lcov > coverage/coverage.lcov"
   },
   "imports": {

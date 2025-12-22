@@ -1,0 +1,8 @@
+{
+  "deno.enable": true,
+  "deno.lint": true,
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "deno.testing.args": [
+    "--allow-read"
+  ]
+}
