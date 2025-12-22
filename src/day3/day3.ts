@@ -21,12 +21,11 @@ export function day3(input: string, part = 1): number {
 }
 
 export function findMaximumJoltage(batteryBank: string, digits = 2): number {
-  const digitsNeeded = digits;
   let result = "";
   let startPos = 0;
 
-  for (let i = 0; i < digitsNeeded; i++) {
-    const remainingNeeded = digitsNeeded - i - 1;
+  for (let i = 0; i < digits; i++) {
+    const remainingNeeded = digits - i - 1;
     const searchEnd = batteryBank.length - remainingNeeded;
 
     let maxDigit = "0";
